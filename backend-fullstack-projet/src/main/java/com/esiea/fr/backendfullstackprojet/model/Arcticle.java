@@ -11,7 +11,7 @@ import java.util.List;
 public class Arcticle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "article_name")
     private String name;
     private String author_name;
@@ -29,11 +29,11 @@ public class Arcticle {
         this.categories = categories;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
