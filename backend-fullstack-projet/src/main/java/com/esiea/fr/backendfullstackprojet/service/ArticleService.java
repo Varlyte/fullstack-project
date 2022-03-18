@@ -1,6 +1,6 @@
 package com.esiea.fr.backendfullstackprojet.service;
 
-import com.esiea.fr.backendfullstackprojet.model.Arcticle;
+import com.esiea.fr.backendfullstackprojet.model.Article;
 import com.esiea.fr.backendfullstackprojet.repository.ArticleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,12 +18,12 @@ public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public Iterable<Arcticle> getArticles(){
+    public Iterable<Article> getArticles(){
         return articleRepository.findAll();
     }
 
-    public Arcticle getArticle(Long id) throws NotFoundException{
-        Optional<Arcticle> res = articleRepository.findById(id);
+    public Article getArticle(Long id) throws NotFoundException{
+        Optional<Article> res = articleRepository.findById(id);
         if (res.isPresent()){
             return res.get();
         }
@@ -32,19 +32,19 @@ public class ArticleService {
         }
     }
 
-    public Arcticle Create(Arcticle arcticle) throws NotAllowedException{
-        if ( arcticle.getId()== null )
-            articleRepository.save(arcticle);
+    public Article Create(Article article) throws NotAllowedException{
+        if ( article.getId()== null )
+            articleRepository.save(article);
         throw new NotAllowedException();
     }
 
-    public Arcticle Update(Arcticle arcticle) {
+    public Article Update(Article article) throws NotFoundException {
         try {
-            getArticle(arcticle.getId());
+            getArticle(article.getId());
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
-        return articleRepository.save(arcticle);
+        return articleRepository.save(article);
     }
 
     public void Delete(Long id) throws NotFoundException{
@@ -55,10 +55,10 @@ public class ArticleService {
             throw new NotFoundException();
         }
     }
-    public Arcticle GetbyAuthorName(String author_name) throws NotFoundException{
-        Optional<Arcticle> arcticle = articleRepository.findByName(author_name);
-        if (arcticle.isPresent()){
-            return arcticle.get();
+    public Article GetbyAuthorName(String author_name) throws NotFoundException{
+        Optional<Article> article = articleRepository.findByName(author_name);
+        if (article.isPresent()){
+            return article.get();
         }
         throw new NotFoundException();
     }

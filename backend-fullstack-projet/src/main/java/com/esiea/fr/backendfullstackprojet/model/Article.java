@@ -8,24 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "articles")
-public class Arcticle {
+public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "article_name")
-    private String name;
     private String author_name;
     private Long date;
     private String contenu;
     @JsonIgnore
     @ManyToMany(mappedBy = "articles")
-    public List<Categorie> categories = new ArrayList<>();
+    public List<Category> categories = new ArrayList<>();
 
-    public List<Categorie> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Categorie> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
@@ -69,10 +67,10 @@ public class Arcticle {
         this.contenu = contenu;
     }
 
-    public Arcticle() {
+    public Article() {
     }
 
-    public Arcticle(long id, String name, String author_name, Long date, String contenu) {
+    public Article(long id, String name, String author_name, Long date, String contenu) {
         super();
         this.id = id;
         this.name = name;
